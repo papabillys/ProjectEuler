@@ -10,19 +10,15 @@
 # 9999999 ( 7-digit ) -> 2540160  and 2540160 > 9999999 .
 # So upper limit = 9999999 and starting number = 3 because 1! and 2! are not included in the sum
 
+import math
+
 def curiousNumber(number):
     number_str = str(number)
     number_str = list(number_str)
     sum = 0
     for x in number_str:
         temp = int(x)
-        i = 1
-        num = 1
-        while i <= temp:
-            num = num*i
-            i = i+1
-        sum = sum+num
-
+        sum = sum+math.factorial(temp)
     if sum == number:
         return True
     else:
@@ -33,11 +29,10 @@ def problem34():
     i = 3
     sum = 0
     while i < upper_limit:
-        if curiousNumber(i):
+        if curiousNumberTest(i):
             sum = sum+i
         i = i+1
         print(i)
     print(sum)
-
 
 problem34()
