@@ -73,11 +73,13 @@ def fastCheck(number):
 
     return False
 
+
 # This function finds the next prime of list_of_primes
 def nextPrime():
 
     global list_of_primes
     n = len(list_of_primes)
+
     prime_found = False
     i = list_of_primes[n - 1] + 1
 
@@ -92,14 +94,20 @@ def nextPrime():
             while flag_limit and flag_check:
 
                 # Check if j is on index limits
-                if j >= n or 2 * list_of_primes[j-1] > i:
-                    flag_limit = False
+                if j < n:
+                    if list_of_primes[j-1] > 10:
+
+                        # Check if prime number is bigger than i/2 . If so , we stop searching for factors of i.
+                        if 2*list_of_primes[j-1] > i:
+                            flag_limit = False
 
                     # Check if i is divided
                     if i % list_of_primes[j] == 0:
                         flag_check = False
                     else:
                         j = j + 1
+                else:
+                    flag_limit = False
 
             if flag_check:  # j is not divided by any number in the list, so it is prime.
                 prime_found = True
